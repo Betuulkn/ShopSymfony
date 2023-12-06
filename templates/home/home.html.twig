@@ -20,12 +20,12 @@
 			</div>
 		</div>
 	{% else %}
-		<p>Il n'y a pas de produit.
-		</p>
+		<p>Il n'y a pas de produit.</p>
 	{% endif %}
 	</section>
 
-	<!-- Add a new product form (for the admin) --> 
+	<!-- Check if the admin is logged-in to add a new product  --> 
+	{% if app.user and is_granted('ROLE_ADMIN') %}
 	<section class="add-form my-5">
 		<div class="row d-flex justify-content-center">
             <div class="col-md-8 border p-3 rounded">
@@ -34,4 +34,5 @@
 			</div>
 		</div>
 	</section>
+	{% endif %}
 {% endblock %}

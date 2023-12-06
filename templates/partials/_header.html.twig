@@ -14,8 +14,11 @@
             </li>
         </ul>
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-dark rounded-circle me-2"><i class="fa-solid fa-user"></i></button>
-            <button type="button" class="btn btn-dark rounded-circle"><i class="fa-solid fa-right-to-bracket"></i></button>
+        {% if app.user %}
+            <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_logout')}}"><i class="fa-solid fa-right-to-bracket" style="color:#FFFFFF;"></i></a></button>
+        {% else %}
+            <button type="button" class="btn btn-dark rounded-circle me-2"><a href="{{ path('app_login')}}"><i class="fa-solid fa-user" style="color:#FFFFFF;"></i></a></button>
+        {% endif %}
         </div>
     </header>
 </div>

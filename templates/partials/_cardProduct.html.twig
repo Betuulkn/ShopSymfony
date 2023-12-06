@@ -6,8 +6,7 @@
 	{% endif %}
 	<div class="card-body ">
 		<h5 class="card-title ">{{ produit.nom }}</h5>
-		<p class="card-text fw-bold">{{ produit.prix }}
-			€</p>
-		<a href="#" class="btn btn-dark">Voir le vêtement</a>
+		<p class="card-text fw-bold">{{ produit.prix }} €</p>
+		<button type="button" class="btn btn-dark"><a href="{{ path('app_produit', {'id': produit.id}) }}" class="text-light text-decoration-none">Voir le vêtement</a></button>
 	</div>
 </div>
