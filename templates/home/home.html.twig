@@ -1,37 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
-{% endblock %}
+{% block title %} Nos vêtements {% endblock %}
 
 {% block body %}
-
 	{% if produits is not empty %}
-		<section class="title">
-			<h1>Liste des produits</h1>
-		</section>
+	<!-- Title --> 
+	<section class="title">
+		<h1 class="text-center mb-4">Nos vêtements</h1>
+	</section>
 
-		<section class="products">
-			<div class="row">
-               	{% for produit in produits %} 
-				<div class="col-4 card m-2">
-					{% if (produit.photo is not null) %}
-			    		<img src="{{ asset('uploads/' ~ produit.photo) }}" class="card-img-top" alt="{{ produit.nom }}">
-					{% else  %}
-						<p>Aucune image</p>         
-					{% endif %}
-					<div class="card-body">
-						<h5 class="card-title">{{ produit.nom }}</h5>
-						<p class="card-text">{{ produit.description }}</p>
-                        <p class="card-text">{{ produit.prix }} €</p>
-						<a href="#" class="btn btn-primary">Voir le produit</a>
-					</div>
-				</div>
-                {% endfor %} 
+	<!-- Products/cloths list  --> 
+	<section class="products my-5">
+		<div class="row">
+			<div class="col-12 d-flex flex wrap justify-content-center">
+				{% for produit in produits %}
+					<!-- Card of a product --> 
+					{% include 'partials/_cardProduct.html.twig' %}
+				{% endfor %}
 			</div>
+		</div>
 	{% else %}
 		<p>Il n'y a pas de produit.
 		</p>
 	{% endif %}
-        </section>
+	</section>
 
-	{{ form(ajout) }}{% endblock %}
+	<!-- Add a new product form (for the admin) --> 
+	<section class="add-form my-5">
+		<div class="row d-flex justify-content-center">
+            <div class="col-md-8 border p-3 rounded">
+                <h2 class="text-center" style="font-size:24px;">Ajouter un nouveau vêtement</h2>
+				{{ form(ajout) }}
+			</div>
+		</div>
+	</section>
+{% endblock %}

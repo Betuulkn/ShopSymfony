@@ -1,0 +1,13 @@
+<div class="card m-2 " style="width: 18rem;">
+	{% if (produit.photo is not null) %}
+		<img src="{{ asset('uploads/' ~ produit.photo) }}" class="img-fluid rounded-top" alt="{{ produit.nom }}">
+	{% else  %}
+		<p>Aucune image</p>
+	{% endif %}
+	<div class="card-body ">
+		<h5 class="card-title ">{{ produit.nom }}</h5>
+		<p class="card-text fw-bold">{{ produit.prix }}
+			€</p>
+		<a href="#" class="btn btn-dark">Voir le vêtement</a>
+	</div>
+</div>
