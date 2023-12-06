@@ -1,9 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
 
+	{% if produits is not empty %}
+		<section class="title">
+			<h1>Liste des produits</h1>
+		</section>
 
+		<section class="products">
+			<div class="row">
+               	{% for produit in produits %} 
+				<div class="col-4 card m-2">
+					{% if (produit.photo is not null) %}
+			    		<img src="{{ asset('uploads/' ~ produit.photo) }}" class="card-img-top" alt="{{ produit.nom }}">
+					{% else  %}
+						<p>Aucune image</p>         
+					{% endif %}
+					<div class="card-body">
+						<h5 class="card-title">{{ produit.nom }}</h5>
+						<p class="card-text">{{ produit.description }}</p>
+                        <p class="card-text">{{ produit.prix }} €</p>
+						<a href="#" class="btn btn-primary">Voir le produit</a>
+					</div>
+				</div>
+                {% endfor %} 
+			</div>
+	{% else %}
+		<p>Il n'y a pas de produit.
+		</p>
+	{% endif %}
+        </section>
 
-{% endblock %}
+	{{ form(ajout) }}{% endblock %}
