@@ -15,10 +15,24 @@ class HomeController extends AbstractController
 {
     /**
      * Home : Display all the products & has a add form for the admin 
+     * 
+     * @param Request
+     * @param EntityManagerInterface
+     * @return Response|
+     * 
      */
     #[Route('/', name: 'app_home')]
     public function home(Request $request, EntityManagerInterface $em): Response
     {
+        // Create an Admin 
+        if ($this->getUser()) {
+            $user = $this->getUser(); 
+            //dd($user->getEmail()); 
+            if ($user->getEmail() == "julien@gmail.com") {
+                $user->setRoles(['ROLE_ADMIN']); 
+            }
+        }
+
         $produit= new Produit();
         $form = $this->createForm(ProduitType::class, $produit); 
         $form->handleRequest($request); 

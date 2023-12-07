@@ -26,7 +26,7 @@ class ContenuPanier
     private Collection $produit;
 
     #[ORM\OneToOne(inversedBy: 'contenuPanier', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Panier $panier = null;
 
     public function __construct()

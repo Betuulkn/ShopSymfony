@@ -18,10 +18,13 @@ class ProfileController extends AbstractController
     /**
      * User profile : display information & update form
      * 
+     * @param EntityManagerInterface 
+     * @param Request
+     * @param UserPasswordHasherInterface
      * @return Response
      */
     #[Route('/', name: 'app_profile')]
-    public function profile(EntityManagerInterface $em, Request $request,  UserPasswordHasherInterface $passwordHasher): Response
+    public function profile(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         // Get the user logged-in
         $user = $this->getUser();
