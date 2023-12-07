@@ -30,7 +30,7 @@
 			{% if app.user and is_granted('ROLE_ADMIN') %}
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
                 <button type="button" class="btn btn-dark btn-lg px-4 me-md-2">Modifier</button>
-                <button type="button" class="btn btn-outline-dark btn-lg px-4">Supprimer</button>
+                <a href="{{ path('delete_produit', {'id': produit.id}) }}" class="btn btn-outline-dark btn-lg px-4">Supprimer</a>
             </div>
         </article>
 
