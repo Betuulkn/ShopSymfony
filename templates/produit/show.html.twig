@@ -1,34 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Détail d'un vêtement {% endblock %}
+{% block title %}
+	Détail d'un vêtement
+{% endblock %}
 
 {% block body %}
-	<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <!-- Photo -->
+	<section class="row flex-lg-row-reverse align-items-center g-5 py-5">
+		<!-- Photo -->
 		<div class="col-10 col-sm-8 col-lg-6">
-			<img src="{{ asset('uploads/' ~ produit.photo) }}" class="d-block mx-lg-auto img-fluid" alt="{{ produit.nom }}" width="700" height="500" loading="lazy">        
-        </div>
-        <!-- Title & description -->
-		<div class="col-lg-6">
-            <div class="mb-5">
-                <a href="{{ path('app_home') }}" class="text-decoration-none"><i class="me-1 fa-solid fa-chevron-left"></i>Retour</a>
-            </div>
+			<img src="{{ asset('uploads/' ~ produit.photo) }}" class="d-block mx-lg-auto img-fluid" alt="{{ produit.nom }}" width="700" height="500" loading="lazy">
+		</div>
+
+		<!-- Title & description -->
+		<article class="col-lg-6">
+			<div class="mb-5">
+				<a href="{{ path('app_home') }}" class="text-decoration-none">
+					<i class="me-1 fa-solid fa-chevron-left"></i>Retour</a>
+			</div>
 			<h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ produit.nom }}</h1>
 			<p class="lead">{{ produit.description }}</p>
-            <p class="lead fw-bold">{{ produit.prix }} €</p>
-            <!-- Link to the shopping cart -->
-            {% if app.user  %}
+			<p class="lead fw-bold">{{ produit.prix }} €</p>
+			<!-- Link to the shopping cart -->
+			{% if app.user  %}
             <div>
-				<a href="" class="btn btn-dark btn-lg px-4 my-2">Ajouter au panier</a>
-			</div>
-            {% endif %}
-            <!-- Update or delete the product if the admin is logged-in -->
-            {% if app.user and is_granted('ROLE_ADMIN') %}
-			<div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
-				<button type="button" class="btn btn-dark btn-lg px-4 me-md-2">Modifier</button>
-				<button type="button" class="btn btn-outline-dark btn-lg px-4">Supprimer</button>
-			</div>
-            {% endif %}
-		</div>
-	</div>
-{% endblock %}
+                <a href="" class="btn btn-dark btn-lg px-4 my-2">Ajouter au panier</a>
+            </div>
+			{% endif %}
+			<!-- Update or delete the product if the admin is logged-in -->
+			{% if app.user and is_granted('ROLE_ADMIN') %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
+                <button type="button" class="btn btn-dark btn-lg px-4 me-md-2">Modifier</button>
+                <button type="button" class="btn btn-outline-dark btn-lg px-4">Supprimer</button>
+            </div>
+        </article>
+
+        {# Update form #}
+        <article class="update-form my-4">
+            <div class="row d-flex justify-content-center ">
+                <div class="col-8 border p-3 rounded">
+                    <h2 class="text-center" style="font-size:24px;">Modifier {{ produit.nom }}</h2>
+                        {{ form(modification) }}
+                    </div>
+                </div>
+            </div>
+        </article>
+        {% endif %}
+    </section>
+    {% endblock %}

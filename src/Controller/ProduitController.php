@@ -7,6 +7,7 @@ use App\Repository\ProduitRepository;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,12 +24,24 @@ class ProduitController extends AbstractController
         } 
  
         $form = $this->createForm(ProduitType::class, $produit); 
-        
         $form->handleRequest($request); 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photo = $form->get('photo')->getData();
+            if ($photo) {
+                $newFilename = uniqid() . '.' . $photo->guessExtension();
+                try {
+                    $photo->move(
+                        $this->getParameter('upload_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $produit->setPhoto($newFilename);
+            }
+
             $em->persist($produit); 
             $em->flush(); 
-
             $this->addFlash('success','Produit modifié !');
         }
   

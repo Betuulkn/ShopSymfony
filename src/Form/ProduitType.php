@@ -32,11 +32,11 @@ class ProduitType extends AbstractType
                             'image/jpeg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid image.',
+                        'mimeTypesMessage' => 'Télécharger une photo valide.',
                     ])
                 ],
             ])
-            ->add('envoyer', SubmitType::class)
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 
