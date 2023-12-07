@@ -13,7 +13,7 @@
         {# Infos user #}
 		<section class="info-user col-lg-6 mx-auto">
             <div class="card p-5">
-                {# Infos  #}
+                {# Infos #}
                 <div class="card-body">
                     <h2 class="text-center">{{ app.user.prenom }} {{ app.user.nom }}</h2>
 			        <p class="lead mb-4">{{ app.user.email }}</p>
@@ -21,7 +21,7 @@
                 {# Buttons to Update or Display the orders #}
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <button type="button" class="btn btn-dark btn-lg px-4 gap-3 w-50" onclick="displayUpdateForm()">Modifier mon compte</button>
-                    <button type="button" class="btn btn-outline-dark btn-lg px-4 w-50">Historique des commandes</button>
+                    <a href="{{ path('app_orders') }}" class="btn btn-outline-dark btn-lg px-4 w-50">Historique des commandes</a>
                 </div>
             </div>
 		</section>
@@ -45,13 +45,16 @@
         </section>
 	</div>
 
-    {# Display the form if the update button is clicked #}
+
     <script>
         updateForm = document.getElementById('updateProfilUser'); 
 
+        /**
+        * Display the form if the update button is clicked 
+        **/
         function displayUpdateForm() {
             if (updateForm.style.display === "none") {
-            updateForm.style.display = "block";
+                updateForm.style.display = "block";
             } else {
                 updateForm.style.display = "none";
             }

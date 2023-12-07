@@ -51,4 +51,14 @@ class ProfileController extends AbstractController
             'updateInfosUser' => $form->createView(), 
         ]);
     }
+
+    #[Route('/orders', name: 'app_orders')]
+    public function orders(): Response
+    {
+        //$orders = ; 
+
+        return $this->render('profile/orders.html.twig', [
+            //'orders' => $orders,
+        ]);
+    }
 }

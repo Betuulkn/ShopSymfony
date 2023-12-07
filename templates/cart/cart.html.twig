@@ -17,7 +17,6 @@
         <table class="table table-striped border">
             <thead class="text-center">
                 <tr>
-                    <th scope="col">Date</th>
                     <th scope="col">Produit</th>
                     <th scope="col">Quantité</th>
                     <th scope="col">Prix</th>
@@ -29,14 +28,16 @@
             <tbody class="text-center">
                 {% set total = 0 %}
                 {% for produit in cart %}
+            {{ form_start(form) }}
                 <tr>
-                    <td>{{ "now"|date('d/m/Y') }}</td>
                     <td>{{ produit.produit.nom }}</td>
+             
                     <td>
                         <a href="{{ path('app_decrease_to_cart', {'id': produit.produit.id}) }}" class="me-2"><i class="fa-solid fa-minus fa-xs"></i></a>
                             {{ produit.quantite }}
                         <a href="{{ path('app_add_to_cart', {'id': produit.produit.id}) }}" class="ms-2"><i class="fa-solid fa-plus fa-xs"></i></a>
                     </td>
+                  
                     <td>{{ produit.produit.prix }} €</td>
                     <td>{{ (produit.produit.prix * produit.quantite) }} €</td>
                     <td>
@@ -45,13 +46,14 @@
                         </a>
                     </td>
                 </tr>
+           {{ form_end(form) }}
                 {% set total = total + (produit.produit.prix * produit.quantite) %}
                 {% endfor %}
 
                 {# If total is empty #}
                 {% if total == 0 %}
                 <tr>
-                    <td colspan="6" class="text-center">Votre panier est vide. </td>
+                    <td colspan="5" class="text-center">Votre panier est vide. </td>
                 <tr>
                 {% endif %}
             </tbody>
@@ -67,10 +69,10 @@
         <div class="d-flex justify-content-center py-4 my-5">
             <a href="{{ path('app_home') }}" class="btn btn-dark custom-btn me-3">Poursuivre mes achats</a>
             <a href="{{ path('app_remove_cart') }}" class="btn btn-dark custom-btn me-3">Supprimer mon panier</a>
-            <a href="" class="btn btn-dark custom-btn mr-2">Valider mon panier</a>
+            <button type="submit" name="submitCart" class="btn btn-dark custom-btn mr-2">Acheter le panier</a>
         </div>
 
-       
+
 </div>
 </section>
 
