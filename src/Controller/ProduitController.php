@@ -8,6 +8,7 @@ use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/produit')]
 class ProduitController extends AbstractController
 {
+    /**
+     * Detail of a product & Update a product
+     * 
+     * @return Response|RedirectToRoute
+     */
     #[Route('/{id}', name: 'app_produit')]
     public function category(EntityManagerInterface $em, ProduitRepository $produitRepository, Produit $produit = null,  Request $request): Response
     {
@@ -45,9 +51,28 @@ class ProduitController extends AbstractController
             $this->addFlash('success','Produit modifié !');
         }
   
-        return $this->render('produit/show.html.twig', [
+        return $this->render('produit/produit.html.twig', [
             'produit' => $produit, 
             'PanierType' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Delete a product
+     * 
+     * @return RedirectToRoute
+     */
+    #[Route('/{id}/delete', name: 'delete_produit')]
+    public function delete(EntityManagerInterface $entityManagerInterface, Produit $produit = null): RedirectResponse
+    {
+        if ($produit == null) {
+            $this->addFlash('danger','Produit introuvable!');
+            return $this->redirectToRoute('app_home'); 
+        }
+        $entityManagerInterface->remove($produit); 
+        $entityManagerInterface->flush(); 
+        $this->addFlash('warning', 'Produit supprimé !');
+
+        return $this->redirectToRoute('app_home'); 
     }
 }
