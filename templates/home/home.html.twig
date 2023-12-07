@@ -1,44 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Nos vêtements {% endblock %}
+{% block title %}
+	Nos vêtements
+{% endblock %}
 
 {% block body %}
 
-	<!-- Message if the user is logged in --> 
+	<!-- Message if the user is logged in -->
 	{% if app.user %}
-		<div class="mb-3 text-center">Ravis de vous retrouver {{ app.user.prenom }} !</div>
+		<div class="row d-flex justify-content-center mb-3">
+			<div class="col-md-6">
+				<div class="alert alert-secondary text-center" role="alert">
+					Ravis de vous retrouver
+					{{ app.user.prenom }}
+					!
+				</div>
+			</div>
+		</div>
 	{% endif %}
 
 	{% if produits is not empty %}
-	<!-- Title --> 
-	<section class="title">
-		<h1 class="text-center mb-4">Nos vêtements</h1>
-	</section>
+		<!-- Title -->
+		<section class="title">
+			<h1 class="text-center mb-4">Nos vêtements</h1>
+		</section>
 
-	<!-- Products/cloths list  --> 
-	<section class="products my-5">
-		<div class="row">
-			<div class="col-12 d-flex flex wrap justify-content-center">
-				{% for produit in produits %}
-					<!-- Card of a product --> 
-					{% include 'partials/_cardProduct.html.twig' %}
-				{% endfor %}
+		<!-- Products/cloths list  -->
+		<section class="products my-4">
+			<div class="row">
+				<div class="col-12 d-flex flex wrap justify-content-center">
+					{% for produit in produits %}
+						<!-- Card of a product -->
+						{% include 'partials/_cardProduct.html.twig' %}
+					{% endfor %}
+				</div>
 			</div>
-		</div>
-	{% else %}
-		<p>Il n'y a pas de produit.</p>
-	{% endif %}
+		{% else %}
+			<p>Il n'y a pas de produit.</p>
+		{% endif %}
 	</section>
 
-	<!-- Check if the admin is logged-in to add a new product  --> 
+	<!-- Check if the admin is logged-in to add a new product  -->
 	{% if app.user and is_granted('ROLE_ADMIN') %}
-	<section class="add-form my-5">
-		<div class="row d-flex justify-content-center">
-            <div class="col-md-8 border p-3 rounded">
-                <h2 class="text-center" style="font-size:24px;">Ajouter un nouveau vêtement</h2>
-				{{ form(ajout) }}
+		<section class="form">
+			<div
+				class="row d-flex justify-content-center">
+				<!-- Button to add a new product -->
+				<div class="col-12 mb-5">
+					<button type="button" class="btn btn-dark btn-lg px-4 me-md-2 w-100" onclick="displayAddForm()">
+						Ajouter un nouveau vêtement
+					</button>
+				</div>
+
+				<!-- Add form (displayed none by default) -->
+				<div class="col-md-8 border p-3 rounded" style="display: none;" id="addProduct-form">
+					<h2 class="text-center" style="font-size:24px;">Ajouter un nouveau vêtement</h2>
+					{{ form(ajout) }}
+					</div>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	{% endif %}
+
+	{# Display the form if the add button is clicked #}
+	<script>
+		addForm = document.getElementById('addProduct-form');
+
+		function displayAddForm() {
+			if (addForm.style.display === "none") {
+				addForm.style.display = "block";
+			} else {
+				addForm.style.display = "none";
+			}
+		}
+	</script>
+
 {% endblock %}
