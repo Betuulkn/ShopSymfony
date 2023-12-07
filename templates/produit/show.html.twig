@@ -29,14 +29,14 @@
 			<!-- Update or delete the product if the admin is logged-in -->
 			{% if app.user and is_granted('ROLE_ADMIN') %}
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
-                <button type="button" class="btn btn-dark btn-lg px-4 me-md-2">Modifier</button>
+                <button type="button" class="btn btn-dark btn-lg px-4 me-md-2" onclick="displayUpdateForm()">Modifier</button>
                 <a href="{{ path('delete_produit', {'id': produit.id}) }}" class="btn btn-outline-dark btn-lg px-4">Supprimer</a>
             </div>
         </article>
 
         {# Update form #}
-        <article class="update-form my-4">
-            <div class="row d-flex justify-content-center ">
+        <article class="update-form my-4" id="updateProduct-form" style="display: none;">
+            <div class="row d-flex justify-content-center">
                 <div class="col-8 border p-3 rounded">
                     <h2 class="text-center" style="font-size:24px;">Modifier {{ produit.nom }}</h2>
                         {{ form(modification) }}
@@ -46,4 +46,16 @@
         </article>
         {% endif %}
     </section>
+
+    <script>
+        updateForm = document.getElementById('updateProduct-form'); 
+
+        function displayUpdateForm() {
+            if (updateForm.style.display === "none") {
+            updateForm.style.display = "block";
+            } else {
+                updateForm.style.display = "none";
+            }
+        }
+    </script>
     {% endblock %}
