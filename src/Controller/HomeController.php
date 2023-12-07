@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     /**
      * Home : Display all the products & has a add form for the admin 
      */
-    #[Route('/', name: 'app_home')]
+    #[Route('/{_locale<en|fr>}', name: 'app_home')]
     public function home(Request $request, EntityManagerInterface $em): Response
     {
         $produit= new Produit();

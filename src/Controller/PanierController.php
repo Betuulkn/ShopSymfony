@@ -36,9 +36,9 @@ class PanierController extends AbstractController
                 'panier' => $panier, 
                 'modification' => $form->createView(),
             ]);}
-    
+
+        }
     }
-}
 
  
         

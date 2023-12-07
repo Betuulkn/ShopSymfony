@@ -3,4 +3,26 @@ Prenom: Prénom
 Password: Mot de passe
 Agree terms: Accepter les termes
 Email: Email
+Please enter a password: Entrez un mot de passe s'il vous plaît
+Your password should be at least {{ limit }} characters: Votre mot de passe doit contenir au moins {{ limit }} caractères
+You should agree to our terms: Vous devez accepter les termes
+
+
+Produits: Produits
+Supprimer: Supprimer
+Quantite: Quantite
+
+
+Enregistrer: Enregistrer
+Télécharger une photo valide: Télécharger une photo valide
+Prix: Prix
+
+ERREUR: ERREUR 
+Page non trouvée: Page non trouvée
+La page que vous cherchez n'a pas été trouvée: La page que vous cherchez n'a pas été trouvée
+Il semblerait qu'un dysfonctionnement se soit produit: Il semblerait qu'un dysfonctionnement se soit produit
+Page non trouvée: Page non trouvée
+
+Modifier: Modifier
+
 
