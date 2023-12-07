@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil de l'utilisateur {% endblock %}
+
+{% block body %}
+
+	<div class="px-4 text-center">
+        {# Title #}
+        <section class="title mb-5">
+		    <h1 class="display-5 fw-bold text-body-emphasis">Mon Compte</h1>
+        </section>
+
+        {# Infos user #}
+		<section class="info-user col-lg-6 mx-auto">
+            <div class="card p-5">
+                {# Infos  #}
+                <div class="card-body">
+                    <h2 class="text-center">{{ app.user.prenom }} {{ app.user.nom }}</h2>
+			        <p class="lead mb-4">{{ app.user.email }}</p>
+                </div>
+                {# Buttons to Update or Display the orders #}
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-dark btn-lg px-4 gap-3 w-50" onclick="displayUpdateForm()">Modifier mon compte</button>
+                    <button type="button" class="btn btn-outline-dark btn-lg px-4 w-50">Historique des commandes</button>
+                </div>
+            </div>
+		</section>
+
+        {# Update profile user form #}
+        <section class="updateProfilUser my-4" style="display: none;" id="updateProfilUser">   
+            <div class="row d-flex justify-content-center ">
+                <div class="col-8 border p-3 rounded p-4">
+                    <h2 class="mb-3" style="font-size:24px;">Modifier mon compte</h2>
+                    {{ form_start(updateInfosUser) }}
+                        {{ form_row(updateInfosUser.nom)}}
+                        {{ form_row(updateInfosUser.prenom)}}
+                        {{ form_row(updateInfosUser.email) }}
+                        {{ form_row(updateInfosUser.password) }}
+                        {# Submit #}
+                        <button class="w-100 btn btn-lg btn-dark" type="submit">Modifier</button>
+                    {{ form_end(updateInfosUser) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+	</div>
+
+    {# Display the form if the update button is clicked #}
+    <script>
+        updateForm = document.getElementById('updateProfilUser'); 
+
+        function displayUpdateForm() {
+            if (updateForm.style.display === "none") {
+            updateForm.style.display = "block";
+            } else {
+                updateForm.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

@@ -51,7 +51,7 @@ class ProduitController extends AbstractController
             $this->addFlash('success','Produit modifié !');
         }
   
-        return $this->render('produit/show.html.twig', [
+        return $this->render('produit/produit.html.twig', [
             'produit' => $produit, 
             'modification' => $form->createView(),
         ]);

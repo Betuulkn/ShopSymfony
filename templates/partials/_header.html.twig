@@ -15,9 +15,10 @@
         </ul>
         <div class="col-md-3 text-end">
         {% if app.user %}
-            <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_logout')}}"><i class="fa-solid fa-right-to-bracket" style="color:#FFFFFF;"></i></a></button>
+            <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_profile') }}" title="Mon compte"> <i class="fa-solid fa-address-card" style="color:#FFFFFF;"></i></a></button>
+            <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_logout') }}" title="Déconnexion"><i class="fa-solid fa-right-to-bracket" style="color:#FFFFFF;"></i></a></button>
         {% else %}
-            <button type="button" class="btn btn-dark rounded-circle me-2"><a href="{{ path('app_login')}}"><i class="fa-solid fa-user" style="color:#FFFFFF;"></i></a></button>
+            <button type="button" class="btn btn-dark rounded-circle me-2"><a href="{{ path('app_login') }}" title="Connexion"><i class="fa-solid fa-user" style="color:#FFFFFF;"></i></a></button>
         {% endif %}
         </div>
     </header>
