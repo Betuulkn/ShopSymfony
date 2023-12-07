@@ -19,9 +19,12 @@ class ProduitController extends AbstractController
     /**
      * Detail of a product & Update a product
      * 
+     * @param EntityManagerInterface 
+     * @param Produit
+     * @param Request 
      * @return Response|RedirectToRoute
      */
-    #[Route('/{_locale<en|fr>}/{id}', name: 'app_produit')]
+    #[Route('/{id}', name: 'app_produit')]
     public function category(EntityManagerInterface $em, ProduitRepository $produitRepository, Produit $produit = null,  Request $request): Response
     {
         if ($produit == null) { 
@@ -60,9 +63,11 @@ class ProduitController extends AbstractController
     /**
      * Delete a product
      * 
+     * @param Produit
+     * @param Request 
      * @return RedirectToRoute
      */
-    #[Route('/{_locale<en|fr>}/{id}/delete', name: 'delete_produit')]
+    #[Route('{id}/delete', name: 'delete_produit')]
     public function delete(EntityManagerInterface $entityManagerInterface, Produit $produit = null): RedirectResponse
     {
         if ($produit == null) {
