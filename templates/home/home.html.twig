@@ -3,6 +3,12 @@
 {% block title %} Nos vêtements {% endblock %}
 
 {% block body %}
+
+	<!-- Message if the user is logged in --> 
+	{% if app.user %}
+		<div class="mb-3 text-center">Ravis de vous retrouver {{ app.user.prenom }} !</div>
+	{% endif %}
+
 	{% if produits is not empty %}
 	<!-- Title --> 
 	<section class="title">
