@@ -47,7 +47,7 @@ class ProduitController extends AbstractController
   
         return $this->render('produit/show.html.twig', [
             'produit' => $produit, 
-            'modification' => $form->createView(),
+            'PanierType' => $form->createView(),
         ]);
     }
 }
