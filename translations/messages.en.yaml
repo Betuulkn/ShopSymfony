@@ -8,17 +8,37 @@ Your password should be at least {{ limit }} characters: Your password should be
 You should agree to our terms: You should agree to our terms
 
 
+Produit: Product
 Produits: Products
 Supprimer: Delete
 Quantite: Quantity 
+Votre panier est vide: Your shopping bag is empty 
+Poursuivre mes achats: Continue shopping
+Supprimer mon panier: Delete my shopping bag
 
 
 Enregistrer: Save
 Télécharger une photo valide: Download a valid picture
 Prix: Price
 
+
 ERREUR: ERROR
+Page non trouvée: Page not found
 La page que vous cherchez n'a pas été trouvée: The page you are looking for has not been found
 Il semblerait qu'un dysfonctionnement se soit produit: It seems that a malfunction has occurred
 
 Modifier: Edit
+
+
+Ravis de vous retrouver: Nice to meet you again
+Nos vêtements: Our clothes
+Il n y a pas de produit: There is no product
+Ajouter un nouveau vêtement: Add a new clothing
+Panier: Shopping bag
+Tous droits réservés: All rights reserved
+
+
+Aucune image: No image
+Voir le vêtement: See the clothing
+
+Mon panier: My shopping bag

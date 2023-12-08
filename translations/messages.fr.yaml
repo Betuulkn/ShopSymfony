@@ -8,9 +8,13 @@ Your password should be at least {{ limit }} characters: Votre mot de passe doit
 You should agree to our terms: Vous devez accepter les termes
 
 
+Produit: Produit
 Produits: Produits
 Supprimer: Supprimer
 Quantite: Quantite
+Votre panier est vide: Votre panier est vide
+Poursuivre mes achats: Poursuivre mes achats
+Supprimer mon panier: Supprimer mon panier
 
 
 Enregistrer: Enregistrer
@@ -25,4 +29,17 @@ Il semblerait qu'un dysfonctionnement se soit produit: Il semblerait qu'un dysfo
 
 Modifier: Modifier
 
+
+Ravis de vous retrouver: Ravis de vous retrouver
+Nos vêtements: Nos vêtements
+Il n y a pas de produit: Il n y a pas de produit
+Ajouter un nouveau vêtement: Ajouter un nouveau vêtement
+Panier: Panier
+Tous droits réservés: Tous droits réservés
+
+
+Aucune image: Aucune image
+Voir le vêtement: Voir le vêtement
+
+Mon panier: Mon panier
 
