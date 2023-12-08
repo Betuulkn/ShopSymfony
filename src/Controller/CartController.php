@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Classe\Cart;
 use App\Entity\ContenuPanier;
 use App\Entity\Panier;
-use App\Form\ContenuPanierType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,13 +24,32 @@ class CartController extends AbstractController
     #[Route('/', name: 'app_cart')]
     public function cart(Cart $cart, ProduitRepository $produitRepository, Request $request, EntityManagerInterface $em): Response
     {
-        $panier = new Panier();
-        $dateAchat = new \DateTime();
-        $panier->setDateAchat($dateAchat);
-
         // Form to save the cart in the database 
-        if (!empty($_POST['submitCart'])) {
-           dd('hello'); 
+        if (isset($_POST['submitCart']) && !empty($_POST['submitCart'])) {
+           //dd($_POST['produitId']); 
+
+           $user = $this->getUser(); 
+           $panier = new Panier();
+           $dateAchat = new \DateTime();
+           $panier->setDateAchat($dateAchat);
+           $panier->setEtat(true); 
+           $panier->setUser($user); 
+           // Save the panier in the database
+           $em->persist($panier); 
+           $em->flush(); 
+   
+           $panierRepo = $em->getRepository(Panier::class); 
+           $lastPanier = $panierRepo->findOneBy([], ['id' => 'DESC']);
+           $produit = $produitRepository->findOneBy(array('id'=> $_POST['produitId']));
+
+           $contenuPanier = new ContenuPanier(); 
+           $contenuPanier->setPanier($lastPanier); 
+           //$contenuPanier->addProduit($produit); 
+           $contenuPanier->setQuantite($_POST['produitQuantite']); 
+           $contenuPanier->setDateAjout($dateAchat); 
+           // Save the contenuPanier in the database
+           $em->persist($contenuPanier); 
+           $em->flush(); 
         }
 
         return $this->render('cart/cart.html.twig', [
