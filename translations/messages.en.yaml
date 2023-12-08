@@ -1,6 +1,6 @@
 Nom: Name
 Prenom: First Name
-Password: Password
+Mot de passe: Password
 Accepter les termes: Agree terms
 Email: Email
 Quantite: Quantity
@@ -26,7 +26,6 @@ Il semblerait qu'un dysfonctionnement se soit produit: It seems that a malfuncti
 
 Modifier: Edit
 
-
 Ravis de vous retrouver: Nice to meet you again
 Nos vêtements: Our clothes
 Il n y a pas de produit: There is no product
@@ -39,3 +38,12 @@ Aucune image: No image
 Voir le vêtement: See the clothing
 
 Mon panier: My shopping bag
+
+Inscription: Register
+Connexion: Login
+Se souvenir de moi: Remember me 
+Nouveau parmi nous ?: New here?
+Créer un compte: Create an account
+En vous connectant, vous acceptez les termes d'utilisation: By logging in, you agree to the terms of use
+Retour: Back
+Ajouter au panier: Add to basket

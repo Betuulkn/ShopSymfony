@@ -15,7 +15,7 @@
 		<article class="col-lg-6">
 			<div class="mb-5">
 				<a href="{{ path('app_home') }}" class="text-decoration-none">
-					<i class="me-1 fa-solid fa-chevron-left"></i>Retour</a>
+					<i class="me-1 fa-solid fa-chevron-left"></i>{{"Retour"|trans}}</a>
 			</div>
 			<h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ produit.nom }}</h1>
 			<p class="lead">{{ produit.description }}</p>
@@ -26,7 +26,7 @@
                 <form action="{{ path('app_cart') }}">
                     <div class="form-group "> 
                         <input type="number" class="form-control mr-3" style="width:70px;" id="quantity-input" placeholder="1"> 
-                        <a class="btn btn-dark btn-lg px-4 my-2" href="{{ path('app_add_to_cart', {'id': produit.id}) }}">Ajouter au panier</a>
+                        <a class="btn btn-dark btn-lg px-4 my-2" href="{{ path('app_add_to_cart', {'id': produit.id}) }}">{{"Ajouter au panier"|trans}}</a>
                     </div>
                 </form>
             </div>
@@ -35,8 +35,8 @@
 			{% if app.user and is_granted('ROLE_ADMIN') %}
             <hr>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
-                <button type="button" class="btn btn-dark btn-lg px-4 me-md-2" onclick="displayUpdateForm()">Modifier</button>
-                <a href="{{ path('delete_produit', {'id': produit.id}) }}" class="btn btn-outline-dark btn-lg px-4">Supprimer</a>
+                <button type="button" class="btn btn-dark btn-lg px-4 me-md-2" onclick="displayUpdateForm()">{{"Modifier"|trans}}</button>
+                <a href="{{ path('delete_produit', {'id': produit.id}) }}" class="btn btn-outline-dark btn-lg px-4">{{"Supprimer"|trans}}</a>
             </div>
         </article>
 
