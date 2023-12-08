@@ -1,32 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Historique des commandes
-{% endblock %}
+{% block title %} Détail d'une commande {% endblock %}
 
 {% block main %}
 	<div
 		class="px-4 text-center">
 		{# Title #}
 		<section class="title mb-5">
-			<h1 class="display-5 fw-bold text-body-emphasis">Historique des commandes</h1>
+			<h1 class="display-5 fw-bold text-body-emphasis">Commande n° </h1>
 		</section>
 
 		{# Cart content #}
 		<section class="row d-flex justify-content-center mt-4">
 			<div class="col-md-11 mx-2 ">
-            	{% if orders is not empty %}
+                
 				<table class="table table-striped border">
 					<thead class="text-center">
 						<tr>
-							<th scope="col">Commande n°</th>
+							<th scope="col">Identifiant</th>
 							<th scope="col">Montant</th>
 							<th scope="col">Date</th>
 						</tr>
 					</thead>
+
 					<tbody class="text-center">
 						{% for order in orders %}
-                            {% if order.panier.user.id == app.user.id %}
 							<tr>
                                 {# Order id #}
 								<td>{{ order.id }}</td>
@@ -39,11 +37,9 @@
                                 {# Order date #}
                                 <td>{{ order.dateAjout|date('d/m/Y') }}</td>
 							</tr>
-                            {% endif %}
 						{% endfor %}
                     </tbody>
                 </table>
-                {% endif %}
 			</div>
 		</section>
 	</div>

@@ -30,7 +30,7 @@ class ProfileController extends AbstractController
         // Get the user logged-in
         $user = $this->getUser();
 
-        // Form to update the user information
+        // Form to update the user informations
         $form = $this->createForm(UserType::class, $user); 
         $form->handleRequest($request); 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,7 +41,7 @@ class ProfileController extends AbstractController
                 $user->getPassword()
             );
             $user->setPassword($hashedPassword);
-
+            // Save the updatings in the database 
             $em->persist($user); 
             $em->flush(); 
             $this->addFlash('success', 'Informations modifiées !');
@@ -53,8 +53,24 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    /**
+     * Display all the orders 
+     */
     #[Route('/orders', name: 'app_orders')]
     public function orders(ContenuPanierRepository $contenuPanierRepository): Response
+    {
+        $orders = $contenuPanierRepository->findAll();
+
+        return $this->render('profile/orders.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
+
+    /**
+     * Display one order 
+     */
+    #[Route('/order', name: 'app_order')]
+    public function order(ContenuPanierRepository $contenuPanierRepository): Response
     {
         $orders = $contenuPanierRepository->findAll();
 
