@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\ContenuPanier;
+use App\Entity\Panier;
 use App\Form\ContenuPanierType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,25 +25,17 @@ class CartController extends AbstractController
     #[Route('/', name: 'app_cart')]
     public function cart(Cart $cart, ProduitRepository $produitRepository, Request $request, EntityManagerInterface $em): Response
     {
-        //dd($request); 
-        $contenuPanier = new ContenuPanier();
-        $dateAjout = new \DateTime();
-        $contenuPanier->setDateAjout($dateAjout);
+        $panier = new Panier();
+        $dateAchat = new \DateTime();
+        $panier->setDateAchat($dateAchat);
 
-        $form = $this->createForm(ContenuPanierType::class, $contenuPanier); 
-        $form->handleRequest($request); 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $contenuPanier = $form->getData();
-           // dd($contenuPanier); 
-            //$em->persist($contenuPanier); 
-            //$em->flush(); 
-            $this->addFlash('success', 'Panier enregistré !');
+        // Form to save the cart in the database 
+        if (!empty($_POST['submitCart'])) {
+           dd('hello'); 
         }
 
         return $this->render('cart/cart.html.twig', [
             'cart' => $cart->getFull($produitRepository),
-            'form' => $form->createView(),
         ]);
     }
 
