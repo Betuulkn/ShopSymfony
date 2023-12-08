@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Form\UserType; 
+use App\Form\UserType;
+use App\Repository\ContenuPanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,12 +54,12 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/orders', name: 'app_orders')]
-    public function orders(): Response
+    public function orders(ContenuPanierRepository $contenuPanierRepository): Response
     {
-        //$orders = ; 
+        $orders = $contenuPanierRepository->findAll();
 
         return $this->render('profile/orders.html.twig', [
-            //'orders' => $orders,
+            'orders' => $orders,
         ]);
     }
 }

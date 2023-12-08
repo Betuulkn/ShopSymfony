@@ -99,7 +99,4 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }
 
-
-    
-
 }
