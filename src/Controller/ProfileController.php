@@ -24,7 +24,7 @@ class ProfileController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'app_profile')]
-    public function profile(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function profile(EntityManagerInterface $em, Request $request,  UserPasswordHasherInterface $passwordHasher): Response
     {
         // Get the user logged-in
         $user = $this->getUser();

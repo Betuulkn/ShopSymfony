@@ -25,7 +25,7 @@ class ProduitController extends AbstractController
      * @return Response|RedirectToRoute
      */
     #[Route('/{id}', name: 'app_produit')]
-    public function category(EntityManagerInterface $em, Produit $produit = null, Request $request): Response
+    public function category(EntityManagerInterface $em, ProduitRepository $produitRepository, Produit $produit = null,  Request $request): Response
     {
         if ($produit == null) { 
             $this->addFlash('danger','Produit introuvable !');
@@ -67,7 +67,7 @@ class ProduitController extends AbstractController
      * @param Request 
      * @return RedirectToRoute
      */
-    #[Route('/{id}/delete', name: 'delete_produit')]
+    #[Route('{id}/delete', name: 'delete_produit')]
     public function delete(EntityManagerInterface $entityManagerInterface, Produit $produit = null): RedirectResponse
     {
         if ($produit == null) {

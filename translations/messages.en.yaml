@@ -4,3 +4,22 @@ Password: Password
 Accepter les termes: Agree terms
 Email: Email
 Quantite: Quantity
+Please enter a password: Please enter a password
+Your password should be at least {{ limit }} characters: Your password should be at least {{ limit }} characters
+You should agree to our terms: You should agree to our terms
+
+
+Produits: Products
+Supprimer: Delete
+
+
+
+Enregistrer: Save
+Télécharger une photo valide: Download a valid picture
+Prix: Price
+
+ERREUR: ERROR
+La page que vous cherchez n'a pas été trouvée: The page you are looking for has not been found
+Il semblerait qu'un dysfonctionnement se soit produit: It seems that a malfunction has occurred
+
+Modifier: Edit
