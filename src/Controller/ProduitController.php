@@ -25,7 +25,7 @@ class ProduitController extends AbstractController
      * @return Response|RedirectToRoute
      */
     #[Route('/{id}', name: 'app_produit')]
-    public function category(EntityManagerInterface $em, ProduitRepository $produitRepository, Produit $produit = null,  Request $request): Response
+    public function category(EntityManagerInterface $em, Produit $produit = null,  Request $request): Response
     {
         if ($produit == null) { 
             $this->addFlash('danger','Produit introuvable !');
@@ -48,7 +48,7 @@ class ProduitController extends AbstractController
                 }
                 $produit->setPhoto($newFilename);
             }
-
+            // Save the product in the database
             $em->persist($produit); 
             $em->flush(); 
             $this->addFlash('success','Produit modifié !');
@@ -56,7 +56,7 @@ class ProduitController extends AbstractController
   
         return $this->render('produit/produit.html.twig', [
             'produit' => $produit, 
-            'PanierType' => $form->createView(),
+            'modification' => $form->createView(),
         ]);
     }
 

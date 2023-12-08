@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Entity\ContenuPanier;
+use App\Entity\Panier;
+use App\Form\ContenuPanierType;
 use App\Repository\ProduitRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,8 +23,17 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'app_cart')]
-    public function cart(Cart $cart, ProduitRepository $produitRepository): Response
+    public function cart(Cart $cart, ProduitRepository $produitRepository, Request $request, EntityManagerInterface $em): Response
     {
+        $panier = new Panier();
+        $dateAchat = new \DateTime();
+        $panier->setDateAchat($dateAchat);
+
+        // Form to save the cart in the database 
+        if (!empty($_POST['submitCart'])) {
+           dd('hello'); 
+        }
+
         return $this->render('cart/cart.html.twig', [
             'cart' => $cart->getFull($produitRepository),
         ]);
@@ -77,5 +91,4 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('app_cart');
     }
-
 }

@@ -29,9 +29,9 @@ class HomeController extends AbstractController
         // Create an Admin 
         if ($this->getUser()) {
             $user = $this->getUser(); 
-            //dd($user->getEmail()); 
-            if ($user->getEmail() == "julien@gmail.com") {
-                $user->setRoles(['ROLE_ADMIN']); 
+            if ($user->getEmail() == "jean@gmail.com") {
+                //dd($user->getEmail()); 
+                $user->setRoles([], ["ROLE_ADMIN"]); 
             }
         }
 

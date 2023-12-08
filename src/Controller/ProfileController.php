@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\ContenuPanier;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Form\UserType; 
+use App\Form\UserType;
+use App\Repository\ContenuPanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +31,7 @@ class ProfileController extends AbstractController
         // Get the user logged-in
         $user = $this->getUser();
 
-        // Form to update the user information
+        // Form to update the user informations
         $form = $this->createForm(UserType::class, $user); 
         $form->handleRequest($request); 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,7 +42,7 @@ class ProfileController extends AbstractController
                 $user->getPassword()
             );
             $user->setPassword($hashedPassword);
-
+            // Save the updatings in the database 
             $em->persist($user); 
             $em->flush(); 
             $this->addFlash('success', 'Informations modifiées !');
@@ -49,6 +51,34 @@ class ProfileController extends AbstractController
         return $this->render('profile/profile.html.twig', [
             'user' => $user,
             'updateInfosUser' => $form->createView(), 
+        ]);
+    }
+
+    /**
+     * Display all the orders 
+     * 
+     * @return Response
+     */
+    #[Route('/commandes', name: 'app_orders')]
+    public function orders(ContenuPanierRepository $contenuPanierRepository): Response
+    {
+        $orders = $contenuPanierRepository->findAll();
+
+        return $this->render('profile/orders.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
+
+    /**
+     * Display one order 
+     * 
+     * @return Response
+     */
+    #[Route('/commandes/{id}', name: 'app_order')]
+    public function order(ContenuPanier $contenuPanier): Response
+    {
+        return $this->render('profile/order.html.twig', [
+            'order' => $contenuPanier,
         ]);
     }
 }

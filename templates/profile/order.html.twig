@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Détail d'une commande
+{% endblock %}
+
+{% block main %}
+	<div
+		class="px-4 text-center">
+		{# Title #}
+		<section class="title mb-5">
+			<h1 class="display-5 fw-bold text-body-emphasis">Votre commande n°
+				{{ order.id }}</h1>
+		</section>
+
+        {# Link Back to the orders list #}
+        <section class="back">
+        	<div class="mb-5">
+				<a href="{{ path('app_orders') }}" class="text-decoration-none">
+					<i class="me-1 fa-solid fa-chevron-left"></i>
+                    Retour
+                </a>
+			</div>
+        </section>
+
+		{# Cart content #}
+		<section class="row d-flex justify-content-center mt-4">
+			<div class="col-md-11 mx-2 ">
+
+				<table class="table table-striped border">
+					<thead class="text-center">
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Produit</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						{% set total = 0 %}
+							<tr>
+								<td>{{ order.panier.dateAchat|date('d/m/Y') }}</td>
+                                {% for produit in order.produit %}
+								    <td>{{ produit.nom }}</td>
+                                    <td>{{ order.quantite }}</td>
+                                    <td>{{ produit.prix }} €</td>
+                                    <td>{{ produit.prix * order.quantite }} €</td>
+                                 {% endfor  %}
+							</tr>
+						</tbody>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+
+{% endblock %}

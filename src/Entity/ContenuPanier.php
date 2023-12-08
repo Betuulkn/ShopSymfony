@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ContenuPanierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,6 +17,8 @@ class ContenuPanier
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Positive]
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?int $quantite = null;
 

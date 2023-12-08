@@ -9,12 +9,16 @@
             <li>
                 <a href="{{ path('app_home')}}" class="nav-link px-2 link-secondary">{{"Nos vêtements"|trans}}</a>
             </li>
+<<<<<<< HEAD
             <li>
                 <a href="{{ path('app_cart')}}" class="nav-link px-2">{{"Panier"|trans}}</a>
             </li>
+=======
+>>>>>>> 777992de56ab2f97b4feda1e7e7dc15a9775dd46
         </ul>
         <div class="col-md-3 text-end">
         {% if app.user %}
+            <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_cart') }}" title="Mon panier"><i class="fa-solid fa-cart-plus" style="color:#FFFFFF;"></i></a></button>
             <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_profile') }}" title="Mon compte"> <i class="fa-solid fa-address-card" style="color:#FFFFFF;"></i></a></button>
             <button type="button" class="btn btn-dark rounded-circle"><a href="{{ path('app_logout') }}" title="Déconnexion"><i class="fa-solid fa-right-to-bracket" style="color:#FFFFFF;"></i></a></button>
         {% else %}

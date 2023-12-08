@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Historique des commandes
+{% endblock %}
+
+{% block main %}
+	<div
+		class="px-4 text-center">
+		{# Title #}
+		<section class="title mb-5">
+			<h1 class="display-5 fw-bold text-body-emphasis">Historique des commandes</h1>
+		</section>
+
+		{# Link Back to the orders list #}
+        <section class="back">
+        	<div class="mb-5">
+				<a href="{{ path('app_profile') }}" class="text-decoration-none">
+					<i class="me-1 fa-solid fa-chevron-left"></i>
+                    Retour
+                </a>
+			</div>
+        </section>
+
+		{# Cart content #}
+		<section class="row d-flex justify-content-center mt-4">
+			<div class="col-md-11 mx-2 ">
+            	{% if orders is not empty %}
+				<table class="table table-striped border">
+					<thead class="text-center">
+						<tr>
+							<th scope="col">Commande n°</th>
+							<th scope="col">Montant</th>
+							<th scope="col">Date</th>
+							<th scope="col">Afficher</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						{% for order in orders %}
+                            {% if order.panier.user.id == app.user.id %}
+							<tr>
+                                {# Order id #}
+								<td>{{ order.id }}</td>
+                                {# Total of the order #}
+								<td>
+                                    {% for produit in order.produit %}
+                                        {{ produit.prix * order.quantite }}€
+                                    {% endfor %}
+                                </td>
+                                {# Order date #}
+                                <td>{{ order.dateAjout|date('d/m/Y') }}</td>
+                                <td><a class="btn btn-dark " href="{{ path('app_order', {'id': order.id}) }}">commande n° {{ order.id }} </a></td>
+							</tr>
+                            {% endif %}
+						{% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <p>Aucune commande enregistrée.</p>
+                {% endif %}
+			</div>
+		</section>
+	</div>
+
+{% endblock %}

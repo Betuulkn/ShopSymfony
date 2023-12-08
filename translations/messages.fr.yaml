@@ -3,6 +3,7 @@ Prenom: Prénom
 Password: Mot de passe
 Agree terms: Accepter les termes
 Email: Email
+Quantite: Quantité
 Please enter a password: Entrez un mot de passe s'il vous plaît
 Your password should be at least {{ limit }} characters: Votre mot de passe doit contenir au moins {{ limit }} caractères
 You should agree to our terms: Vous devez accepter les termes
@@ -11,10 +12,14 @@ You should agree to our terms: Vous devez accepter les termes
 Produit: Produit
 Produits: Produits
 Supprimer: Supprimer
+<<<<<<< HEAD
 Quantite: Quantite
 Votre panier est vide: Votre panier est vide
 Poursuivre mes achats: Poursuivre mes achats
 Supprimer mon panier: Supprimer mon panier
+=======
+
+>>>>>>> 777992de56ab2f97b4feda1e7e7dc15a9775dd46
 
 
 Enregistrer: Enregistrer
