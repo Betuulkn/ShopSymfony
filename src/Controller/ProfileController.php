@@ -77,6 +77,7 @@ class ProfileController extends AbstractController
     #[Route('/commandes/{id}', name: 'app_order')]
     public function order(ContenuPanier $contenuPanier): Response
     {
+        //dd($contenuPanier); 
         return $this->render('profile/order.html.twig', [
             'order' => $contenuPanier,
         ]);

@@ -9,8 +9,9 @@
 		class="px-4 text-center">
 		{# Title #}
 		<section class="title mb-5">
-			<h1 class="display-5 fw-bold text-body-emphasis">Votre commande n°
-				{{ order.id }}</h1>
+			<h1 class="display-5 fw-bold text-body-emphasis">
+				Votre commande n°{{ order.id }}
+			</h1>
 		</section>
 
         {# Link Back to the orders list #}
@@ -41,12 +42,10 @@
 						{% set total = 0 %}
 							<tr>
 								<td>{{ order.panier.dateAchat|date('d/m/Y') }}</td>
-                                {% for produit in order.produit %}
-								    <td>{{ produit.nom }}</td>
-                                    <td>{{ order.quantite }}</td>
-                                    <td>{{ produit.prix }} €</td>
-                                    <td>{{ produit.prix * order.quantite }} €</td>
-								{% endfor  %}
+								<td>{{ order.produit.nom }}</td>
+								<td>{{ order.quantite }}</td>
+								<td>{{ order.produit.prix }} €</td>
+								<td>{{ order.produit.prix * order.quantite }} €</td>
 							</tr>
 						</tbody>
 					</tbody>
