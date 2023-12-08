@@ -8,7 +8,7 @@
             {{ form_errors(registrationForm) }}
             {# Title #}
 			<section class="col-lg-5 text-center text-lg-start">
-				<h1 class="display-4 fw-bold lh-1 text-body-emphasis "> Inscription </h1>
+				<h1 class="display-4 fw-bold lh-1 text-body-emphasis ">{{"Inscription"|trans}}</h1>
 			</section>
 
             {# Form #}
@@ -21,7 +21,7 @@
                         {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
                         {{ form_row(registrationForm.agreeTerms) }}
                         {# Submit #}
-                        <button class="w-100 btn btn-lg btn-dark" type="submit">Inscription</button>
+                        <button class="w-100 btn btn-lg btn-dark" type="submit">{{"Inscription"|trans}}</button>
                     {{ form_end(registrationForm) }}
 				</div>
 			</section>

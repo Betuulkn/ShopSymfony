@@ -21,7 +21,7 @@
 			{# Title #}
 			<div class="col-lg-5 text-center text-lg-start">
 				<h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-					Connexion
+					{{"Connexion"|trans}}
 				</h1>
 			</div>
 			<div
@@ -37,23 +37,23 @@
 					{# Password #}
 					<div class="form-floating mb-3">
 						<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Mot de passe" autocomplete="current-password" required>
-						<label for="inputPassword">Mot de passe</label>
+						<label for="inputPassword">{{"Mot de passe"|trans}}</label>
 						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					</div>
 					{# Remember me #}
 					<div class="checkbox mb-3">
 						<label>
 							<input type="checkbox" value="remember-me">
-							Se souvenir de moi.
+							{{"Se souvenir de moi"|trans}}.
 						</label>
 					</div>
 					{# Submit #}
-					<button class="w-100 btn btn-lg btn-dark" type="submit">Connexion</button>
+					<button class="w-100 btn btn-lg btn-dark" type="submit">{{"Connexion"|trans}}</button>
 					<hr class="my-4">
-					<p>Nouveau parmi nous ?
-						<a class="text-decoration-none" href="{{ path('app_register') }}">Créer un compte</a>
+					<p>{{"Nouveau parmi nous ?"|trans}}
+						<a class="text-decoration-none" href="{{ path('app_register') }}">{{"Créer un compte"|trans}}</a>
 					</p>
-					<small class="text-body-secondary">En vous connectant, vous acceptez les termes d'utilisation.</small>
+					<small class="text-body-secondary">{{"En vous connectant, vous acceptez les termes d'utilisation"|trans}}.</small>
 				</form>
 			</div>
 		</div>

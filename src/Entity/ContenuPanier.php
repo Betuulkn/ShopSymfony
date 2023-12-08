@@ -35,7 +35,7 @@ class ContenuPanier
 
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
