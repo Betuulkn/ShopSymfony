@@ -54,6 +54,35 @@
                     {% set total = total + (produit.produit.prix * produit.quantite) %}
                     {% endfor %}
 
+            <tbody class="text-center">
+                {% set total = 0 %}
+                {% for produit in cart %}
+                <tr>
+                    <td>{{ "now"|date('d/m/Y') }}</td>
+                    <td>{{ produit.produit.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_decrease_to_cart', {'id': produit.produit.id}) }}" class="me-2"><i class="fa-solid fa-minus fa-xs"></i></a>
+                            {{ produit.quantite }}
+                        <a href="{{ path('app_add_to_cart', {'id': produit.produit.id}) }}" class="ms-2"><i class="fa-solid fa-plus fa-xs"></i></a>
+                    </td>
+                    <td>{{ produit.produit.prix }} €</td>
+                    <td>{{ (produit.produit.prix * produit.quantite) }} €</td>
+                    <td>
+                        <a href="{{ path('app_delete_to_cart', {'id': produit.produit.id }) }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% set total = total + (produit.produit.prix * produit.quantite) %}
+                {% endfor %}
+
+                {# If total is empty #}
+                {% if total == 0 %}
+                <tr>
+                    <td colspan="6" class="text-center">Votre panier est vide.</td>
+                <tr>
+                {% endif %}
+            </tbody>
                     {# Message if the total is empty #}
                     {% if total == 0 %}
                     <tr>
@@ -62,6 +91,9 @@
                     {% endif %}
                 </tbody>
             </table>
+
+        </table>
+
 
             {# Total price #}
             <div class="text-right my-5">

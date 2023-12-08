@@ -11,7 +11,7 @@
 		<div class="row d-flex justify-content-center mb-3">
 			<div class="col-md-6">
 				<div class="alert alert-secondary text-center" role="alert">
-					Ravis de vous retrouver
+					{{'Ravis de vous retrouver'|trans}}
 					{{ app.user.prenom }}
 					!
 				</div>
@@ -22,7 +22,7 @@
 	{% if produits is not empty %}
 		<!-- Title -->
 		<section class="title">
-			<h1 class="text-center mb-4">Nos vêtements</h1>
+			<h1 class="text-center mb-4">{{"Nos vêtements"|trans}}</h1>
 		</section>
 
 		<!-- Products/cloths list  -->
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		{% else %}
-			<p>Il n'y a pas de produit.</p>
+			<p>{{"Il n y a pas de produit"|trans}}</p>
 		{% endif %}
 	</section>
 
@@ -48,13 +48,13 @@
 				<!-- Button to add a new product -->
 				<div class="col-12 mb-5">
 					<button type="button" class="btn btn-dark btn-lg px-4 me-md-2 w-100" onclick="displayAddForm()">
-						Ajouter un nouveau vêtement
+						{{"Ajouter un nouveau vêtement"|trans}}
 					</button>
 				</div>
 
 				<!-- Add form (displayed none by default) -->
 				<div class="col-md-8 border p-3 rounded" style="display: none;" id="addProduct-form">
-					<h2 class="text-center" style="font-size:24px;">Ajouter un nouveau vêtement</h2>
+					<h2 class="text-center" style="font-size:24px;">{{"Ajouter un nouveau vêtement"|trans}}</h2>
 					{{ form(ajout) }}
 					</div>
 				</div>
@@ -73,6 +73,9 @@
 				addForm.style.display = "none";
 			}
 		}
+
 	</script>
+
+   
 
 {% endblock %}

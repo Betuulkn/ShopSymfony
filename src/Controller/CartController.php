@@ -44,7 +44,7 @@ class CartController extends AbstractController
 
            $contenuPanier = new ContenuPanier(); 
            $contenuPanier->setPanier($lastPanier); 
-           $contenuPanier->addProduit($produit); 
+           //$contenuPanier->addProduit($produit); 
            $contenuPanier->setQuantite($_POST['produitQuantite']); 
            $contenuPanier->setDateAjout($dateAchat); 
            // Save the contenuPanier in the database

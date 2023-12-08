@@ -2,11 +2,11 @@
 	{% if (produit.photo is not null) %}
 		<img src="{{ asset('uploads/' ~ produit.photo) }}" class="img-fluid rounded-top" alt="{{ produit.nom }}">
 	{% else  %}
-		<p>Aucune image</p>
+		<p>{{"Aucune image"|trans}}</p>
 	{% endif %}
 	<div class="card-body ">
 		<h5 class="card-title ">{{ produit.nom }}</h5>
 		<p class="card-text fw-bold">{{ produit.prix }} €</p>
-		<button type="button" class="btn btn-dark"><a href="{{ path('app_produit', {'id': produit.id}) }}" class="text-light text-decoration-none">Voir le vêtement</a></button>
+		<button type="button" class="btn btn-dark"><a href="{{ path('app_produit', {'id': produit.id}) }}" class="text-light text-decoration-none">{{"Voir le vêtement"|trans}}</a></button>
 	</div>
 </div>

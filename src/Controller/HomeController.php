@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomeController extends AbstractController
 {
@@ -21,8 +22,9 @@ class HomeController extends AbstractController
      * @return Response|
      * 
      */
-    #[Route('/', name: 'app_home')]
-    public function home(Request $request, EntityManagerInterface $em): Response
+    #[Route('/{_locale}/', name: 'app_home')]
+    public function home(TranslatorInterface $translator, 
+    Request $request, EntityManagerInterface $em): Response
     {
         // Create an Admin 
         if ($this->getUser()) {
@@ -32,6 +34,8 @@ class HomeController extends AbstractController
                 $user->setRoles([], ["ROLE_ADMIN"]); 
             }
         }
+
+        
 
         $produit= new Produit();
         $form = $this->createForm(ProduitType::class, $produit); 
@@ -64,5 +68,7 @@ class HomeController extends AbstractController
             'produits' => $produits,
             'ajout' => $form->createView(),
         ]);
+
+        
     }
 }
