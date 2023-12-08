@@ -9,11 +9,12 @@
 	<!-- Message if the user is logged in -->
 	{% if app.user %}
 		<div class="row d-flex justify-content-center mb-3">
-			<div class="col-md-6">
-				<div class="alert alert-secondary text-center" role="alert">
+			<div class="col-md-5 justify_content-between">
+				<div class="alert alert-dismissible fade show alert-secondary text-center" role="alert">
 					{{'Ravis de vous retrouver'|trans}}
 					{{ app.user.prenom }}
 					!
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			</div>
 		</div>
@@ -75,7 +76,5 @@
 		}
 
 	</script>
-
-   
 
 {% endblock %}

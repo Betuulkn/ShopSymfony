@@ -53,10 +53,12 @@
         {% endif %}
     </section>
 
-    {# Display the form if the update button is clicked #}
     <script>
         updateForm = document.getElementById('updateProduct-form'); 
 
+        /**
+        * Display the form if the update button is clicked 
+        **/
         function displayUpdateForm() {
             if (updateForm.style.display === "none") {
             updateForm.style.display = "block";
