@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/profil')]
+#[Route('/{_locale}/profil')]
 class ProfileController extends AbstractController
 {
     /**
