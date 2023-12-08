@@ -36,8 +36,6 @@ class HomeController extends AbstractController
             }
         }
 
-        
-
         $produit= new Produit();
         $form = $this->createForm(ProduitType::class, $produit); 
         $form->handleRequest($request); 
@@ -69,7 +67,5 @@ class HomeController extends AbstractController
             'produits' => $produits,
             'ajout' => $form->createView(),
         ]);
-
-        
     }
 }

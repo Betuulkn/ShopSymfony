@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Classe\Cart;
 use App\Entity\ContenuPanier;
 use App\Entity\Panier;
+use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,34 +23,40 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'app_cart')]
-    public function cart(Cart $cart, ProduitRepository $produitRepository, Request $request, EntityManagerInterface $em): Response
+    public function cart(Cart $cart, ProduitRepository $produitRepository, PanierRepository $panierRepository, EntityManagerInterface $em): Response
     {
         // Form to save the cart in the database 
         if (isset($_POST['submitCart']) && !empty($_POST['submitCart'])) {
-           //dd($_POST['produitId']); 
+            // Get data from the form 
+            $form = $_POST['form'];
+            $dateAchat = new \DateTime();
+            $userLogged = $this->getUser(); 
+            $panier = $panierRepository->findOneByUser($userLogged->getId());
 
-           $user = $this->getUser(); 
-           $panier = new Panier();
-           $dateAchat = new \DateTime();
-           $panier->setDateAchat($dateAchat);
-           $panier->setEtat(true); 
-           $panier->setUser($user); 
-           // Save the panier in the database
-           $em->persist($panier); 
-           $em->flush(); 
-   
-           $panierRepo = $em->getRepository(Panier::class); 
-           $lastPanier = $panierRepo->findOneBy([], ['id' => 'DESC']);
-           $produit = $produitRepository->findOneBy(array('id'=> $_POST['produitId']));
+            // Check if the panier already exists for the user logged in 
+            if ($panier != null && $panier->isEtat() == 0) {
+                $panier = $panier;
+            } else {
+                $panier = new Panier();
+                $panier->setDateAchat($dateAchat);
+                $panier->setEtat(true); 
+                $panier->setUser($userLogged); 
+                $em->persist($panier);
+            } 
+         
+            foreach ($form as $key => $value) {
+                $produit = $produitRepository->findOneBy(array('id'=> $value['produitId']));
+                $contenuPanier = new ContenuPanier(); 
+                $contenuPanier->setPanier($panier); 
+                $contenuPanier->setQuantite($value['produitQte']); 
+                $contenuPanier->setDateAjout($dateAchat); 
+                $contenuPanier->setProduit($produit); 
 
-           $contenuPanier = new ContenuPanier(); 
-           $contenuPanier->setPanier($lastPanier); 
-           //$contenuPanier->addProduit($produit); 
-           $contenuPanier->setQuantite($_POST['produitQuantite']); 
-           $contenuPanier->setDateAjout($dateAchat); 
-           // Save the contenuPanier in the database
-           $em->persist($contenuPanier); 
-           $em->flush(); 
+                $em->persist($contenuPanier);
+            }
+            
+            $em->flush();
+            $this->addFlash('success', 'Panier acheté !');
         }
 
         return $this->render('cart/cart.html.twig', [
@@ -68,7 +75,6 @@ class CartController extends AbstractController
     public function add(Cart $cart, $id): Response
     {
         $cart->add($id);
-        //dd($cart->get());
 
         return $this->redirectToRoute('app_cart');
     }
@@ -80,7 +86,6 @@ class CartController extends AbstractController
     public function decrease(Cart $cart, $id): Response
     {
         $cart->decrease($id);
-        //dd($cart->get());
 
         return $this->redirectToRoute('app_cart');
     }

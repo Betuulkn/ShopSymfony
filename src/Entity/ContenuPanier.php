@@ -33,11 +33,6 @@ class ContenuPanier
     #[ORM\JoinColumn(nullable: false)]
     private ?Produit $produit = null;
 
-    public function __construct()
-    {
-        $this->produit = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
