@@ -32,7 +32,7 @@
                    <tr>
                         {# Product name #}
                         <td>{{ produit.produit.nom }}</td>
-                        <input type="hidden" name="produitNom" value="{{ produit.produit.id }}">
+                        <input type="hidden" name="produitId" value="{{ produit.produit.id }}">
                         {# Product quantity #}
                         <td>
                             <a href="{{ path('app_decrease_to_cart', {'id': produit.produit.id}) }}" class="me-2"><i class="fa-solid fa-minus fa-xs"></i></a>
@@ -44,7 +44,7 @@
                         <td>{{ produit.produit.prix }} €</td>
                         {# Total price #}
                         <td>{{ (produit.produit.prix * produit.quantite) }} €</td>
-                        {# Delete button #}
+                        {# Button to delete the line #}
                         <td>
                             <a href="{{ path('app_delete_to_cart', {'id': produit.produit.id }) }}">
                                 <i class="fa-solid fa-trash"></i>
@@ -52,7 +52,6 @@
                         </td>
                     </tr>
                     {% set total = total + (produit.produit.prix * produit.quantite) %}
-                   
                     {% endfor %}
 
                     {# Message if the total is empty #}
@@ -62,21 +61,21 @@
                     <tr>
                     {% endif %}
                 </tbody>
-        </table>
+            </table>
 
-        {# Total price #}
-        <div class="text-right my-5">
-            <b>Nombre d'articles : {{ cart | length }}</b><br>
-            <b>TOTAL : {{ total }} € TTC</b>
-        </div>
+            {# Total price #}
+            <div class="text-right my-5">
+                <b>Nombre d'articles : {{ cart | length }}</b><br>
+                <b>TOTAL : {{ total }} € TTC</b>
+            </div>
 
-        {# Buttons : back - remove - Buy the cart #}
-        <div class="d-flex justify-content-center py-4 my-5">
-            <a href="{{ path('app_home') }}" class="btn btn-dark custom-btn me-3">Poursuivre mes achats</a>
-            <a href="{{ path('app_remove_cart') }}" class="btn btn-dark custom-btn me-3">Supprimer mon panier</a>
-            <button type="submit" name="submitCart" class="btn btn-dark custom-btn mr-2">Acheter le panier</button>
-        </div>
-   </form>
+            {# Buttons : back - remove - Buy the cart #}
+            <div class="d-flex justify-content-center py-4 my-5">
+                <a href="{{ path('app_home') }}" class="btn btn-dark custom-btn me-3">Poursuivre mes achats</a>
+                <a href="{{ path('app_remove_cart') }}" class="btn btn-dark custom-btn me-3">Supprimer mon panier</a>
+                <button type="submit" name="submitCart" class="btn btn-dark custom-btn mr-2" value="test">Acheter le panier</button>
+            </div>
+        </form>
     </div>
 </section>
 

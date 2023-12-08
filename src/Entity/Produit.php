@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
@@ -44,8 +46,13 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produit')]
-    private ?ContenuPanier $contenuPanier = null;
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: ContenuPanier::class, orphanRemoval: true)]
+    private Collection $contenuPanier;
+
+    public function __construct()
+    {
+        $this->contenuPanier = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,18 +119,6 @@ class Produit
         return $this;
     }
 
-    public function getContenuPanier(): ?ContenuPanier
-    {
-        return $this->contenuPanier;
-    }
-
-    public function setContenuPanier(?ContenuPanier $contenuPanier): static
-    {
-        $this->contenuPanier = $contenuPanier;
-
-        return $this;
-    }
-
     #[ORM\PostRemove]
     public function deletePhoto()
     {
@@ -131,5 +126,35 @@ class Produit
             unlink(__DIR__.'/../../public/uploads/'.$this->photo);
         }
         return true; 
+    }
+
+    /**
+     * @return Collection<int, ContenuPanier>
+     */
+    public function getContenuPanier(): Collection
+    {
+        return $this->contenuPanier;
+    }
+
+    public function addContenuPanier(ContenuPanier $contenuPanier): static
+    {
+        if (!$this->contenuPanier->contains($contenuPanier)) {
+            $this->contenuPanier->add($contenuPanier);
+            $contenuPanier->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenuPanier(ContenuPanier $contenuPanier): static
+    {
+        if ($this->contenuPanier->removeElement($contenuPanier)) {
+            // set the owning side to null (unless already changed)
+            if ($contenuPanier->getProduit() === $this) {
+                $contenuPanier->setProduit(null);
+            }
+        }
+
+        return $this;
     }
 }
