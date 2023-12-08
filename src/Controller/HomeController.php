@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+#[Route('/{_locale}/')]
 class HomeController extends AbstractController
 {
     /**
@@ -22,7 +23,7 @@ class HomeController extends AbstractController
      * @return Response|
      * 
      */
-    #[Route('/{_locale}/', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function home(TranslatorInterface $translator, 
     Request $request, EntityManagerInterface $em): Response
     {
