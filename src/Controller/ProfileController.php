@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ContenuPanier;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
@@ -55,8 +56,10 @@ class ProfileController extends AbstractController
 
     /**
      * Display all the orders 
+     * 
+     * @return Response
      */
-    #[Route('/orders', name: 'app_orders')]
+    #[Route('/commandes', name: 'app_orders')]
     public function orders(ContenuPanierRepository $contenuPanierRepository): Response
     {
         $orders = $contenuPanierRepository->findAll();
@@ -68,14 +71,14 @@ class ProfileController extends AbstractController
 
     /**
      * Display one order 
+     * 
+     * @return Response
      */
-    #[Route('/order', name: 'app_order')]
-    public function order(ContenuPanierRepository $contenuPanierRepository): Response
+    #[Route('/commandes/{id}', name: 'app_order')]
+    public function order(ContenuPanier $contenuPanier): Response
     {
-        $orders = $contenuPanierRepository->findAll();
-
-        return $this->render('profile/orders.html.twig', [
-            'orders' => $orders,
+        return $this->render('profile/order.html.twig', [
+            'order' => $contenuPanier,
         ]);
     }
 }
