@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -17,6 +18,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas un email valide.',
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -25,13 +30,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string The hashed password
+     * validation constraints (RegistrationFormType) 
      */
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le nom doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le nom ne doit pas comporter plus de {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le prenom doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le prenom ne doit pas comporter plus de {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 100)]
     private ?string $prenom = null;
 

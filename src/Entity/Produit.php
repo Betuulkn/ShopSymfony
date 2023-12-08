@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('nom')]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -15,15 +18,26 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le nom doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le nom ne doit pas comporter plus de {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[Assert\Positive]
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?float $prix = null;
 
+    #[Assert\Positive]
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?int $stock = null;
 
